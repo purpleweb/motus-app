@@ -14,6 +14,8 @@ for mot in f:
     mot = unidecode(mot)
     if (' ' in mot):
         continue
+    if ('.' in mot):
+        continue
     if (len(mot) == 8):
         index += 1
         wordList.append(mot)
