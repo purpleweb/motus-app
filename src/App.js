@@ -84,6 +84,11 @@ function App() {
               <Input onWordAdd={handleAddWord} />
             </>
           }
+          {state == 'WIN' &&
+            <div className="notification is-success">
+              Bravo, c'est gagné !
+            </div>
+          }
         </div>
         <hr />
         <div className="box">
