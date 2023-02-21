@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+$column-gap: 0px;
+$block-spacing: 0.5rem;
+$border: white;
+
+@import "../node_modules/bulma/bulma.sass";
+
+
+html {
+    background-color: #8ad9ff;
+}
+
+.container {
+    width: 350px;
+}
+
+h1.title {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px #443a2a;
+    font-size: 2.5rem;
+}
+
+.board {
+    font-size: 1.2em;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgb(46, 46, 46);
+
+    .columns {
+        margin-bottom: 0;
+    }
+
+    .cell {
+        margin: 2px;
+        line-height: 2em;
+        color: findColorInvert($cyan);
+        box-shadow: 1px 1px 2px #8ad9ff;
+
+        p {
+            // background-color: $cyan;
+            border: 1px solid white;
+            background: rgb(53,126,186);
+            background: linear-gradient(0deg, rgba(53,126,186,1) 0%, rgba(62,142,208,1) 51%, rgba(110,189,254,1) 100%); 
+        }
+
+        &.cursor p {
+            background: linear-gradient(0deg, rgb(124, 196, 255) 0%, rgb(62, 142, 208) 51%, rgb(110, 189, 254) 100%)
+        }
+
+        &.v p {
+            background: $red;
+            color: findColorInvert($red);
+        }
+
+        &.wp p {
+            background: $yellow;
+        }
+
+        &.writing {
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+    }
+}
