@@ -9,7 +9,6 @@ import dict from './dict.json';
 
 import './App.scss';
 
-//const wordListInit = ["ARMATURE", "ATIRANCE", "ARITECEN", "ACCIDENT", "ATTIRANC", "ARRICOTS", "ABRICOTS"];
 const wordListInit = [];
 
 function App() {
