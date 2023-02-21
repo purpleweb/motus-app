@@ -31,11 +31,6 @@ function App() {
   }
 
   function handleStart() {
-    generateSolution();
-    setState('PLAYING');
-  }
-
-  function handleRestart() {
     setWordList([]);
     generateSolution();
     setState('PLAYING');
@@ -92,7 +87,7 @@ function App() {
         <hr />
         <div className="box">
           <p>Vous pouvez à tout moment recommencer une nouvelle partie en cliquant sur le bouton restart.</p>
-          <button className="button is-warning" onClick={handleRestart}>restart</button>
+          <button className="button is-warning" onClick={handleStart}>restart</button>
         </div>
       </div>
     </div>
