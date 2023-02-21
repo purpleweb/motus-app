@@ -11,18 +11,26 @@ import './App.scss';
 const wordListInit = [];
 
 function App() {
-  const [state, setState] = useState('PLAYING'); // START, PLAYING, WIN, GAMEOVER
+  const [state, setState] = useState('START'); // START, PLAYING, WIN, GAMEOVER
 
   const [wordList, setWordList] = useState(wordListInit);
   const solution = "ABRICOTS";
-  console.info("Motus init ! word to guess = " + solution);
 
   function handleAddWord(wordToAdd) {
-    setWordList([...wordList, wordToAdd.toUpperCase()]);
+    wordToAdd = wordToAdd.toUpperCase();
+    setWordList([...wordList, wordToAdd]);
+    if (wordToAdd === solution) {
+      setState('WIN');
+    }
+  }
+
+  function handleStart() {
+    setState('PLAYING');
   }
 
   function handleRestart() {
     setWordList([]);
+    setState('PLAYING');
   }
 
   function lettersFound() {
@@ -30,7 +38,7 @@ function App() {
     lettersFound[0] = solution[0];
 
     wordList.forEach(function(word) {
-      const [validHints, wrongPlacedHints] = computeHints(word, solution);
+      const [validHints,] = computeHints(word, solution);
       validHints.forEach(function(valid, index) {
         if (valid) {
           lettersFound[index] = solution[index];
@@ -41,6 +49,18 @@ function App() {
     return lettersFound;
   }
 
+  if (state === 'START') {
+    return (
+      <div className="App">
+        <div className="container">
+          <h1 className="title"> MOTUS </h1>
+          <p>Bienvenue sur ce jeu inspiré du célèbre jeu Motus diffusé à la télévision.</p>
+          <button className="button is-primary" onClick={handleStart}>Commencer à jouer</button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <div className="container">
@@ -49,14 +69,21 @@ function App() {
           {wordList.map((word, index) => {
             return (<Line key={index} word={word} wordToGuess={solution} />);
           })}
-          <LineInput letters={lettersFound()} />
-          <Input onWordAdd={handleAddWord} />
-          <button onClick={handleRestart}>restart</button>
+          {state == 'PLAYING' &&
+            <>
+              <LineInput letters={lettersFound()} />
+              <Input onWordAdd={handleAddWord} />
+            </>
+          }
+        </div>
+        <hr />
+        <div className="box">
+          <p>Vous pouvez à tout moment recommencer une nouvelle partie en cliquant sur le bouton restart.</p>
+          <button className="button is-warning" onClick={handleRestart}>restart</button>
         </div>
       </div>
     </div>
   );
 }
-
 
 export default App;

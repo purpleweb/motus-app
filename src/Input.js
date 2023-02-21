@@ -1,22 +1,24 @@
 import { useState } from "react";
 
-export function Input({onWordAdd}) {
-  const [input, setInput] = useState('');
-  const disabled = input.length < 8;
+export function Input({ onWordAdd }) {
+    const [input, setInput] = useState('');
+    const disabled = input.length < 8;
 
-  function onInputChange(e) {
-    setInput(e.target.value);
-  }
+    function onInputChange(e) {
+        setInput(e.target.value);
+    }
 
-  function handleAddWord() {
-    setInput('');
-    onWordAdd(input);
-  }
+    function handleSubmit(e) {
+        e.preventDefault();
+        setInput('');
+        onWordAdd(input);
+    }
 
-  return (
-    <div>
-      <input maxLength="8" onChange={onInputChange} type="text" name="bid" value={input} />
-      <button onClick={handleAddWord} disabled={disabled}>ok</button>
-    </div>
-  )
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input maxLength="8" onChange={onInputChange} type="text" name="bid" value={input} />
+            </form>
+        </div>
+    )
 }
