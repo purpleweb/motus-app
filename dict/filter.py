@@ -5,14 +5,14 @@ f = open("dictionary.csv", "r")
 
 wordList = []
 
-for mot in f:
-    mot = mot.strip().upper()
-    mot = unidecode(mot)
-    if (' ' in mot):
+for word in f:
+    word = word.strip().upper()
+    word = unidecode(word)
+    if (' ' in word):
         continue
-    if ('.' in mot):
+    if ('.' in word):
         continue
-    if (len(mot) == 8):
-        wordList.append(mot)
+    if (len(word) == 8):
+        wordList.append(word)
 
 print(json.dumps(wordList))
