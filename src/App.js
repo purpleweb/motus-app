@@ -9,8 +9,13 @@ import dict from './dict.json';
 
 import './App.scss';
 
+const STATE_START = 'START';
+const STATE_PLAYING = 'PLAYING';
+const STATE_WIN = 'WIN';
+const STATE_GAMEOVER = 'GAMEOVER';
+
 function App() {
-  const [state, setState] = useState('START'); // START, PLAYING, WIN, GAMEOVER
+  const [state, setState] = useState(STATE_START);
   const [wordList, setWordList] = useState([]);
   const [solution, setSolution] = useState('');
 
@@ -24,14 +29,14 @@ function App() {
     wordToAdd = wordToAdd.toUpperCase();
     setWordList([...wordList, wordToAdd]);
     if (wordToAdd === solution) {
-      setState('WIN');
+      setState(STATE_WIN);
     }
   }
 
   function handleStart() {
     setWordList([]);
     generateSolution();
-    setState('PLAYING');
+    setState(STATE_PLAYING);
   }
 
   function lettersFound() {
@@ -50,7 +55,7 @@ function App() {
     return lettersFound;
   }
 
-  if (state === 'START') {
+  if (state === STATE_START) {
     return (
       <div className="App">
         <div className="container">
@@ -70,13 +75,13 @@ function App() {
           {wordList.map((word, index) => {
             return (<Line key={index} word={word} wordToGuess={solution} />);
           })}
-          {state == 'PLAYING' &&
+          {state == STATE_PLAYING &&
             <>
               <LineInput letters={lettersFound()} />
               <Input onWordAdd={handleAddWord} />
             </>
           }
-          {state == 'WIN' &&
+          {state == STATE_WIN &&
             <div className="notification is-success">
               Bravo, c'est gagné !
             </div>
