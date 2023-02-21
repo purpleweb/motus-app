@@ -9,11 +9,9 @@ import dict from './dict.json';
 
 import './App.scss';
 
-const wordListInit = [];
-
 function App() {
   const [state, setState] = useState('START'); // START, PLAYING, WIN, GAMEOVER
-  const [wordList, setWordList] = useState(wordListInit);
+  const [wordList, setWordList] = useState([]);
   const [solution, setSolution] = useState('');
 
   function generateSolution() {
