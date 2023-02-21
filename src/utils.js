@@ -1,9 +1,15 @@
+import dict from './dict.json';
 
 export function computeHints(bid, solution) {
   let validHints = Array(8).fill(false);
   let wrongPlacedHints = Array(8).fill(false);
   let usedCharInSolution = Array(8).fill(false);
   let usedCharInBid = Array(8).fill(false);
+
+  const found = dict.find(word => word == bid);
+  if (!found) {
+    return [validHints, wrongPlacedHints, Array(8).fill(true)];
+  }
 
   for (var index = 0; index < bid.length; index++) {
     if (bid[index] === solution[index]) {
@@ -27,5 +33,5 @@ export function computeHints(bid, solution) {
     }
   }
 
-  return [validHints, wrongPlacedHints];
+  return [validHints, wrongPlacedHints, Array(8).fill(false)];
 }

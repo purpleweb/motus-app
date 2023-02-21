@@ -1,6 +1,6 @@
 import { Letter } from './Letter';
 
-export function Square({ letter, valid = false, wrongPlace = false, cursor = false }) {
+export function Square({ letter, valid = false, wrongPlace = false, error = false, cursor = false }) {
 
   function handleKeyPress(e) {
     ///console.log(e);
@@ -13,6 +13,9 @@ export function Square({ letter, valid = false, wrongPlace = false, cursor = fal
   }
   if (wrongPlace) {
     classes += " wp";
+  }
+  if (error) {
+    classes += " error";
   }
   if (cursor) {
     classes += " cursor";

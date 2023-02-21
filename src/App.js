@@ -5,6 +5,8 @@ import { Line } from './Line';
 import { LineInput } from './LineInput';
 import { computeHints } from './utils';
 
+import dict from './dict.json';
+
 import './App.scss';
 
 //const wordListInit = ["ARMATURE", "ATIRANCE", "ARITECEN", "ACCIDENT", "ATTIRANC", "ARRICOTS", "ABRICOTS"];
@@ -12,9 +14,14 @@ const wordListInit = [];
 
 function App() {
   const [state, setState] = useState('START'); // START, PLAYING, WIN, GAMEOVER
-
   const [wordList, setWordList] = useState(wordListInit);
-  const solution = "ABRICOTS";
+  const [solution, setSolution] = useState('');
+
+  function generateSolution() {
+    const random = dict[Math.floor(Math.random()*dict.length)];
+    console.log("Solution générée : "+random);
+    setSolution(random);
+  }
 
   function handleAddWord(wordToAdd) {
     wordToAdd = wordToAdd.toUpperCase();
@@ -25,11 +32,13 @@ function App() {
   }
 
   function handleStart() {
+    generateSolution();
     setState('PLAYING');
   }
 
   function handleRestart() {
     setWordList([]);
+    generateSolution();
     setState('PLAYING');
   }
 

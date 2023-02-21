@@ -57,6 +57,10 @@ h1.title {
             background: $yellow;
         }
 
+        &.error p {
+            background: $grey;
+        }
+
         &.writing {
             font-weight: bold;
             color: white;

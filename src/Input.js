@@ -10,8 +10,10 @@ export function Input({ onWordAdd }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setInput('');
-        onWordAdd(input);
+        if (input.length === 8) {
+            setInput('');
+            onWordAdd(input);
+        }
     }
 
     return (
