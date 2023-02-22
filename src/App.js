@@ -1,12 +1,9 @@
 import { useState } from 'react';
-
 import { Input } from './Input';
 import { Line } from './Line';
 import { LineInput } from './LineInput';
 import { computeHints } from './utils';
-
 import dict from './dict.json';
-
 import './App.scss';
 
 const STATE_START = 'START';
