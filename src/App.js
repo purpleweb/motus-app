@@ -18,7 +18,7 @@ function App() {
 
   function generateSolution() {
     const random = dict[Math.floor(Math.random()*dict.length)];
-    console.log("Solution générée : "+random);
+    console.log("Solution : "+random);
     setSolution(random);
   }
 
