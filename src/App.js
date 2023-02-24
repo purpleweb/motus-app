@@ -6,13 +6,15 @@ import { computeHints } from './utils';
 import dict from './dict.json';
 import './App.scss';
 
-const STATE_START = 'START';
-const STATE_PLAYING = 'PLAYING';
-const STATE_WIN = 'WIN';
-const STATE_GAMEOVER = 'GAMEOVER';
+const STATUS = {
+  START: 'START',
+  PLAYING: 'PLAYING',
+  WIN: 'WIN',
+  GAMEOVER: 'GAMEOVER'
+}
 
 function App() {
-  const [state, setState] = useState(STATE_START);
+  const [state, setState] = useState(STATUS.START);
   const [wordList, setWordList] = useState([]);
   const [solution, setSolution] = useState('');
 
@@ -26,14 +28,14 @@ function App() {
     wordToAdd = wordToAdd.toUpperCase();
     setWordList([...wordList, wordToAdd]);
     if (wordToAdd === solution) {
-      setState(STATE_WIN);
+      setState(STATUS.WIN);
     }
   }
 
   function handleStart() {
     setWordList([]);
     generateSolution();
-    setState(STATE_PLAYING);
+    setState(STATUS.PLAYING);
   }
 
   function lettersFound() {
@@ -52,7 +54,7 @@ function App() {
     return lettersFound;
   }
 
-  if (state === STATE_START) {
+  if (state === STATUS.START) {
     return (
       <div className="App">
         <div className="container">
@@ -72,13 +74,13 @@ function App() {
           {wordList.map((word, index) => {
             return (<Line key={index} word={word} wordToGuess={solution} />);
           })}
-          {state == STATE_PLAYING &&
+          {state === STATUS.PLAYING &&
             <>
               <LineInput letters={lettersFound()} />
               <Input onWordAdd={handleAddWord} />
             </>
           }
-          {state == STATE_WIN &&
+          {state === STATUS.WIN &&
             <div className="notification is-success">
               Bravo, c'est gagné !
             </div>
