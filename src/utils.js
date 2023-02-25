@@ -6,7 +6,7 @@ export function computeHints(bid, solution) {
   let usedCharInSolution = Array(8).fill(false);
   let usedCharInBid = Array(8).fill(false);
 
-  const found = dict.find(word => word == bid);
+  const found = dict.find(word => word === bid);
   if (!found) {
     return [validHints, wrongPlacedHints, Array(8).fill(true)];
   }
