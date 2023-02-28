@@ -59,7 +59,7 @@ function App() {
       <div className="App">
         <div className="container">
           <h1 className="title"> MOTUS </h1>
-          <p>Bienvenue sur ce jeu inspiré du célèbre jeu Motus diffusé à la télévision.</p>
+          <div className="box"> Bienvenue sur ce jeu inspiré du célèbre jeu Motus diffusé à la télévision.  </div>
           <button className="button is-primary" onClick={handleStart}>Commencer à jouer</button>
         </div>
       </div>
@@ -86,11 +86,10 @@ function App() {
             </div>
           }
         </div>
-        <hr />
         <div className="box">
           <p>Vous pouvez à tout moment recommencer une nouvelle partie en cliquant sur le bouton restart.</p>
-          <button className="button is-warning" onClick={handleStart}>restart</button>
         </div>
+        <button className="button is-warning" onClick={handleStart}>restart</button>
       </div>
     </div>
   );
