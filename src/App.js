@@ -31,7 +31,6 @@ function App() {
 
   function handleStart() {
     setWordList([]);
-    generateSolution();
     setSolution(generateSolution());
     setState(STATUS.PLAYING);
   }
