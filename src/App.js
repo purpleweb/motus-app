@@ -18,7 +18,7 @@ function App() {
   const [solution, setSolution] = useState('');
 
   if (solution) {
-    console.log("Solution : "+solution);
+    console.log("Solution : " + solution);
   }
 
   function handleAddWord(wordToAdd) {
@@ -39,9 +39,9 @@ function App() {
     let lettersFound = Array(8).fill(null);
     lettersFound[0] = solution[0];
 
-    wordList.forEach(function(word) {
+    wordList.forEach(function (word) {
       const [validHints,] = computeHints(word, solution);
-      validHints.forEach(function(valid, index) {
+      validHints.forEach(function (valid, index) {
         if (valid) {
           lettersFound[index] = solution[index];
         }
