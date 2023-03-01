@@ -1,3 +1,5 @@
 # Motus App
 
+![Motus app](screenshot.png)
+
 This project is an open source Motus/Wordle-like video game written with React.
