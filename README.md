@@ -1,7 +1,7 @@
 # Motus App
 
 <p align="center">
-    ![Motus app](screenshot.png)
+    <img src="screenshot.png?raw=true" alt="Motus App" title="Motus App" />
 </p>
 
 
