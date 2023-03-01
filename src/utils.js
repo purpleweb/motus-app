@@ -35,3 +35,7 @@ export function computeHints(bid, solution) {
 
   return [validHints, wrongPlacedHints, Array(8).fill(false)];
 }
+
+export function generateSolution() {
+    return dict[Math.floor(Math.random()*dict.length)];
+}

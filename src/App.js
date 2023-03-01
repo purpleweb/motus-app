@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Input } from './Input';
 import { Line } from './Line';
 import { LineInput } from './LineInput';
-import { computeHints } from './utils';
-import dict from './dict.json';
+import { computeHints, generateSolution } from './utils';
 import './App.scss';
 
 const STATUS = {
@@ -18,10 +17,8 @@ function App() {
   const [wordList, setWordList] = useState([]);
   const [solution, setSolution] = useState('');
 
-  function generateSolution() {
-    const random = dict[Math.floor(Math.random()*dict.length)];
-    console.log("Solution : "+random);
-    setSolution(random);
+  if (solution) {
+    console.log("Solution : "+solution);
   }
 
   function handleAddWord(wordToAdd) {
@@ -35,6 +32,7 @@ function App() {
   function handleStart() {
     setWordList([]);
     generateSolution();
+    setSolution(generateSolution());
     setState(STATUS.PLAYING);
   }
 
@@ -60,7 +58,7 @@ function App() {
         <div className="container">
           <h1 className="title"> MOTUS </h1>
           <div className="box"> Bienvenue sur ce jeu inspiré du célèbre jeu Motus diffusé à la télévision.  </div>
-          <button className="button is-primary" onClick={handleStart}>Commencer à jouer</button>
+          <button className="button is-primary" onClick={handleStart} data-testid="start">Commencer à jouer</button>
         </div>
       </div>
     );
@@ -70,7 +68,7 @@ function App() {
     <div className="App">
       <div className="container">
         <h1 className="title"> MOTUS </h1>
-        <div className="board">
+        <div className="board" data-testid="board">
           {wordList.map((word, index) => {
             return (<Line key={index} word={word} wordToGuess={solution} />);
           })}
