@@ -83,10 +83,7 @@ function App() {
             </div>
           }
         </div>
-        <div className="box">
-          <p>Vous pouvez à tout moment recommencer une nouvelle partie en cliquant sur le bouton restart.</p>
-        </div>
-        <button className="button is-warning" onClick={handleStart}>restart</button>
+        <button className="button is-warning" onClick={handleStart}>nouvelle parie</button>
       </div>
     </div>
   );
