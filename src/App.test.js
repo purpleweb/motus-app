@@ -21,3 +21,27 @@ test('play an entire game', () => {
   const bravo = screen.getByText(/Bravo/i);
   expect(bravo).toBeInTheDocument();
 });
+
+test('click restart set a new game', () => {
+  utils.generateSolution = jest.fn(() => 'CONCERTE');
+
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("start"));
+
+  const input = screen.getByTestId('input');
+
+  expect(screen.queryByTestId("filled-line")).toBeNull();
+
+  fireEvent.change(input, {target: {value: "CAMARADE"}});
+  fireEvent.click(screen.getByTestId("valider"));
+  expect(screen.queryAllByTestId("filled-line").length).toEqual(1);
+
+  fireEvent.change(input, {target: {value: "COMMUNES"}});
+  fireEvent.click(screen.getByTestId("valider"));
+  expect(screen.queryAllByTestId("filled-line").length).toEqual(2);
+
+  fireEvent.click(screen.getByTestId("restart"));
+
+  expect(screen.queryByTestId("filled-line")).toBeNull();
+});

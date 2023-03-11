@@ -2,7 +2,7 @@ import { Square } from "./Square";
 
 export function LineInput({letters}) {
     return (
-      <div className="columns is-mobile">
+      <div className="columns is-mobile" data-testid="input-line">
         <Square letter={letters[0]} />
         <Square letter={letters[1]} />
         <Square letter={letters[2]} />

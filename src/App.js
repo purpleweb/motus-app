@@ -83,7 +83,7 @@ function App() {
             </div>
           }
         </div>
-        <button className="button is-warning" onClick={handleStart}>nouvelle parie</button>
+        <button className="button is-warning" onClick={handleStart} data-testid="restart">nouvelle parie</button>
       </div>
     </div>
   );
