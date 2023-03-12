@@ -18,7 +18,7 @@ function App() {
   const [solution, setSolution] = useState('');
 
   if (solution) {
-    console.log("Solution : " + solution);
+    global.SOLUTION = solution;
   }
 
   function handleAddWord(wordToAdd) {
