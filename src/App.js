@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from './Input';
 import { Line } from './Line';
 import { LineInput } from './LineInput';
@@ -16,6 +16,7 @@ function App() {
   const [state, setState] = useState(STATUS.START);
   const [wordList, setWordList] = useState([]);
   const [solution, setSolution] = useState(null);
+  const [timer, setTimer] = useState(0);
 
   if (solution) {
     global.SOLUTION = solution;
@@ -33,6 +34,7 @@ function App() {
     setWordList([]);
     setSolution(generateSolution());
     setState(STATUS.PLAYING);
+    setTimer(0);
   }
 
   function lettersFound() {
@@ -50,6 +52,28 @@ function App() {
 
     return lettersFound;
   }
+
+  function formatTime(timeInSeconds) {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    let secondsString = seconds.toString();
+    if (seconds < 10) {
+      secondsString = '0' + secondsString;
+    }
+    return `${minutes}:${secondsString}`;
+  }
+
+  const timerDisplay = formatTime(timer);
+
+  useEffect(() => {
+    function onTick() {
+      if (state === STATUS.PLAYING) {
+        setTimer(t => t + 1);
+      }
+    }
+    const intervalId = setInterval(onTick, 1000);
+    return () => clearInterval(intervalId);
+  }, [state])
 
   if (state === STATUS.START) {
     return (
@@ -83,7 +107,14 @@ function App() {
             </div>
           }
         </div>
-        <button className="button is-warning" onClick={handleStart} data-testid="restart">nouvelle parie</button>
+        <div className="level">
+          <div className="level-left">
+            <button className="button is-warning" onClick={handleStart} data-testid="restart">nouvelle parie</button>
+          </div>
+          <div className="level-right">
+            <span className="timer">{timerDisplay}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
