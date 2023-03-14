@@ -109,7 +109,7 @@ function App() {
         </div>
         <div className="level">
           <div className="level-left">
-            <button className="button is-warning" onClick={handleStart} data-testid="restart">nouvelle parie</button>
+            <button className="button is-warning" onClick={handleStart} data-testid="restart">nouvelle partie</button>
           </div>
           <div className="level-right">
             <span className="timer">{timerDisplay}</span>
