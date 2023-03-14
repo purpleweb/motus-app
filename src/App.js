@@ -15,7 +15,7 @@ const STATUS = {
 function App() {
   const [state, setState] = useState(STATUS.START);
   const [wordList, setWordList] = useState([]);
-  const [solution, setSolution] = useState('');
+  const [solution, setSolution] = useState(null);
 
   if (solution) {
     global.SOLUTION = solution;
