@@ -1,6 +1,15 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import App from './App';
 import * as utils from './utils';
+
+beforeEach(() => {
+  jest.useFakeTimers()
+})
+
+afterEach(() => {
+  jest.runOnlyPendingTimers()
+  jest.useRealTimers()
+})
 
 test('renders Motus title', () => {
   render(<App />);
@@ -44,4 +53,22 @@ test('click restart set a new game', () => {
   fireEvent.click(screen.getByTestId("restart"));
 
   expect(screen.queryByTestId("filled-line")).toBeNull();
+});
+
+test('timer is counting 7 seconds', () => {
+  utils.generateSolution = jest.fn(() => 'CONCERTE');
+
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("start"));
+
+  act(() => jest.advanceTimersByTime(7000));
+
+  const input = screen.getByTestId('input');
+
+  fireEvent.change(input, { target: { value: "CONCERTE" } });
+  fireEvent.click(screen.getByTestId("valider"));
+
+  const timer = screen.getByTestId('timer');
+  expect(timer).toContainHTML("0:07");
 });

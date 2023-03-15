@@ -26,6 +26,6 @@ export function Timer({timer, setTimer, state}) {
     }, [state, setTimer])
 
     return <div className="level-right">
-        <span className="timer">{timerDisplay}</span>
+        <span className="timer" data-testid="timer">{timerDisplay}</span>
     </div>
 }
