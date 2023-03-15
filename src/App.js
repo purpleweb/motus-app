@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Input } from './Input';
 import { Line } from './Line';
 import { LineInput } from './LineInput';
+import { Timer } from './Timer';
 import { computeHints, generateSolution } from './utils';
 import './App.scss';
 
-const STATUS = {
+export const STATUS = {
   START: 'START',
   PLAYING: 'PLAYING',
   WIN: 'WIN',
@@ -53,28 +54,6 @@ function App() {
     return lettersFound;
   }
 
-  function formatTime(timeInSeconds) {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = timeInSeconds % 60;
-    let secondsString = seconds.toString();
-    if (seconds < 10) {
-      secondsString = '0' + secondsString;
-    }
-    return `${minutes}:${secondsString}`;
-  }
-
-  const timerDisplay = formatTime(timer);
-
-  useEffect(() => {
-    function onTick() {
-      if (state === STATUS.PLAYING) {
-        setTimer(t => t + 1);
-      }
-    }
-    const intervalId = setInterval(onTick, 1000);
-    return () => clearInterval(intervalId);
-  }, [state])
-
   if (state === STATUS.START) {
     return (
       <div className="App">
@@ -111,9 +90,7 @@ function App() {
           <div className="level-left">
             <button className="button is-warning" onClick={handleStart} data-testid="restart">nouvelle partie</button>
           </div>
-          <div className="level-right">
-            <span className="timer">{timerDisplay}</span>
-          </div>
+          <Timer timer={timer} setTimer={setTimer} state={state} />
         </div>
       </div>
     </div>
