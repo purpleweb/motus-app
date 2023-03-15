@@ -69,6 +69,8 @@ test('timer is counting 7 seconds', () => {
   fireEvent.change(input, { target: { value: "CONCERTE" } });
   fireEvent.click(screen.getByTestId("valider"));
 
+  act(() => jest.advanceTimersByTime(5000));
+
   const timer = screen.getByTestId('timer');
   expect(timer).toContainHTML("0:07");
 });
