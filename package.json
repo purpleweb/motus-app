@@ -19,6 +19,7 @@
     "deploy" : "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "testNoWatch": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
