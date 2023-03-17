@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import { keyboard } from '@testing-library/user-event/dist/keyboard';
 import App from './App';
 import * as utils from './utils';
 
@@ -82,11 +83,16 @@ test ('show solution button open modal with solution', () => {
 
   fireEvent.click(screen.getByTestId("start"));
 
-  const solution = screen.queryByText(/^PROPOSER$/i);
+  let solution = screen.queryByText(/^PROPOSER$/i);
   expect(solution).toBeNull();
 
   fireEvent.click(screen.getByTestId("show-solution"));
 
-  const solutionShown = screen.getByText(/^PROPOSER$/i);
-  expect(solutionShown).toBeInTheDocument();
+  solution = screen.getByText(/^PROPOSER$/i);
+  expect(solution).toBeInTheDocument();
+
+  keyboard('{Escape}');
+
+  solution = screen.queryByText(/^PROPOSER$/i);
+  expect(solution).toBeNull();
 });

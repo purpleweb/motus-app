@@ -1,4 +1,18 @@
+import { useEffect } from "react";
+
 export function ShowSolution({solution, showSolution, setShowSolution}) {
+    useEffect(() => {
+        function handleKeyEvent(e) {
+            if (e.keyCode === 27) {
+                setShowSolution(false);
+            }
+        }
+        if (showSolution) {
+            document.addEventListener("keydown", handleKeyEvent);
+        }
+        return () => document.removeEventListener("keydown", handleKeyEvent);
+    }, [showSolution, setShowSolution]);
+
     function handleClose() {
         setShowSolution(false);
     }
