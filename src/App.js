@@ -6,6 +6,7 @@ import { Timer } from './Timer';
 import { ShowSolution } from './ShowSolution';
 import { computeHints, generateSolution } from './utils';
 import './App.scss';
+import { createPortal } from 'react-dom';
 
 export const STATUS = {
   START: 'START',
@@ -100,7 +101,10 @@ function App() {
           <Timer timer={timer} setTimer={setTimer} state={state} />
         </div>
       </div>
-      <ShowSolution solution={solution} showSolution={showSolution} setShowSolution={setShowSolution} />
+      {createPortal(
+        <ShowSolution solution={solution} showSolution={showSolution} setShowSolution={setShowSolution} />,
+        document.body
+      )}
     </div>
   );
 }
