@@ -74,3 +74,19 @@ test('timer is counting 7 seconds', () => {
   const timer = screen.getByTestId('timer');
   expect(timer).toContainHTML("0:07");
 });
+
+test ('show solution button open modal with solution', () => {
+  utils.generateSolution = jest.fn(() => 'PROPOSER');
+
+  render(<App />);
+
+  fireEvent.click(screen.getByTestId("start"));
+
+  const solution = screen.queryByText(/^PROPOSER$/i);
+  expect(solution).toBeNull();
+
+  fireEvent.click(screen.getByTestId("show-solution"));
+
+  const solutionShown = screen.getByText(/^PROPOSER$/i);
+  expect(solutionShown).toBeInTheDocument();
+});

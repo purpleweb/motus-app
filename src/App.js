@@ -3,6 +3,7 @@ import { Input } from './Input';
 import { Line } from './Line';
 import { LineInput } from './LineInput';
 import { Timer } from './Timer';
+import { ShowSolution } from './ShowSolution';
 import { computeHints, generateSolution } from './utils';
 import './App.scss';
 
@@ -18,10 +19,7 @@ function App() {
   const [wordList, setWordList] = useState([]);
   const [solution, setSolution] = useState(null);
   const [timer, setTimer] = useState(0);
-
-  if (solution) {
-    global.SOLUTION = solution;
-  }
+  const [showSolution, setShowSolution] = useState(false);
 
   function handleAddWord(wordToAdd) {
     wordToAdd = wordToAdd.toUpperCase();
@@ -36,6 +34,10 @@ function App() {
     setSolution(generateSolution());
     setState(STATUS.PLAYING);
     setTimer(0);
+  }
+
+  function handleShowSolution() {
+    setShowSolution(true);
   }
 
   function lettersFound() {
@@ -88,11 +90,17 @@ function App() {
         </div>
         <div className="level">
           <div className="level-left">
-            <button className="button is-warning" onClick={handleStart} data-testid="restart">nouvelle partie</button>
+            <div className='level-item'>
+              <button className="button is-warning is-light" onClick={handleStart} data-testid="restart">recommencer</button>
+            </div>
+            <div className='level-item'>
+              <button className="button is-info is-light" onClick={handleShowSolution} data-testid="show-solution">solution</button>
+            </div>
           </div>
           <Timer timer={timer} setTimer={setTimer} state={state} />
         </div>
       </div>
+      <ShowSolution solution={solution} showSolution={showSolution} setShowSolution={setShowSolution} />
     </div>
   );
 }
