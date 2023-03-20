@@ -38,6 +38,7 @@ function App() {
   }
 
   function handleShowSolution() {
+    // disable le bouton si le jeu est terminé
     setShowSolution(true);
   }
 
