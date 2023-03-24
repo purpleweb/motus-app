@@ -7,7 +7,7 @@
 
 ## Description
 
-This project is an open source Motus/Wordle-like video game written with React.
+This project is an open source Wordle-like app made with React.
 
 ## Live project
 
