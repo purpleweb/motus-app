@@ -5,7 +5,7 @@ export function Input({ onWordAdd }) {
     const invalid = input.length !== 8;
 
     function onInputChange(e) {
-        setInput(e.target.value);
+        setInput(e.target.value.trim());
     }
 
     function handleSubmit(e) {
@@ -16,10 +16,7 @@ export function Input({ onWordAdd }) {
         }
     }
 
-    let button = <button data-testid="valider" className="button is-primary">Valider</button>;
-    if (invalid) {
-        button = <button data-testid="valider" disabled className="button is-primary">Valider</button>;
-    }
+    const disabled = invalid ? "disabled" : ""
 
     return (
         <form onSubmit={handleSubmit}>
@@ -29,7 +26,7 @@ export function Input({ onWordAdd }) {
                         <input data-testid="input" className="input is-focused" maxLength="8" onChange={onInputChange} type="text" name="bid" value={input} />
                     </p>
                     <p className="control">
-                        {button}
+                        <button data-testid="valider" disabled={disabled} className="button is-primary">Valider</button>
                     </p>
                 </div>
             </div>
