@@ -16,8 +16,6 @@ export function Input({ onWordAdd }) {
         }
     }
 
-    const disabled = invalid ? "disabled" : ""
-
     return (
         <form onSubmit={handleSubmit}>
             <div className="control">
@@ -26,7 +24,7 @@ export function Input({ onWordAdd }) {
                         <input data-testid="input" className="input is-focused" maxLength="8" onChange={onInputChange} type="text" name="bid" value={input} />
                     </p>
                     <p className="control">
-                        <button data-testid="valider" disabled={disabled} className="button is-primary">Valider</button>
+                        <button data-testid="valider" disabled={invalid ? "disabled" : ""} className="button is-primary">Valider</button>
                     </p>
                 </div>
             </div>
