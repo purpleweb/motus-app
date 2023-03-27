@@ -1,31 +1,19 @@
 import { Letter } from './Letter';
 
-export function Square({ letter, valid = false, wrongPlace = false, error = false, cursor = false }) {
-
-  function handleKeyPress(e) {
-    ///console.log(e);
-  }
-
-  let classes = "column cell";
+export function Square({ letter, valid = false, wrongPlace = false, error = false}) {
+  let classes = ["column", "cell"];
 
   if (valid) {
-    classes += " v";
+    classes.push("v")
   }
   if (wrongPlace) {
-    classes += " wp";
+    classes.push("wp");
   }
   if (error) {
-    classes += " error";
-  }
-  if (cursor) {
-    classes += " cursor";
-  }
-
-  if (cursor) {
-    <div className={classes}><Letter letter={letter} onKeyPress={handleKeyPress} /></div>
+    classes.push("error")
   }
 
   return (
-    <div className={classes}><Letter letter={letter} /></div>
+    <div className={classes.join(' ')}><Letter letter={letter} /></div>
   );
 }
