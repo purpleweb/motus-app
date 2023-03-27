@@ -95,4 +95,13 @@ test ('show solution button open modal with solution', () => {
 
   solution = screen.queryByText(/^PROPOSER$/i);
   expect(solution).toBeNull();
+
+  const button = screen.getByTestId("show-solution");
+  expect(button).not.toBeDisabled()
+
+  const input = screen.getByTestId('input');
+  fireEvent.change(input, { target: { value: "PROPOSER" } });
+  fireEvent.click(screen.getByTestId("valider"));
+
+  expect(button).toBeDisabled()
 });

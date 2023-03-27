@@ -38,7 +38,6 @@ function App() {
   }
 
   function handleShowSolution() {
-    // disable le bouton si le jeu est terminé
     setShowSolution(true);
   }
 
@@ -96,7 +95,7 @@ function App() {
               <button className="button is-warning is-light" onClick={handleStart} data-testid="restart">recommencer</button>
             </div>
             <div className='level-item'>
-              <button className="button is-info is-light" onClick={handleShowSolution} data-testid="show-solution">solution</button>
+              <button className="button is-info is-light" onClick={handleShowSolution} disabled={state !== STATUS.PLAYING ? "disabled" : ""} data-testid="show-solution">solution</button>
             </div>
           </div>
           <Timer timer={timer} setTimer={setTimer} state={state} />
