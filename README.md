@@ -12,3 +12,13 @@ This project is an open source Wordle-like app made with React.
 ## Live project
 
 [Try motus online](https://motus.purpleweb.fr/)
+
+## Make dictionnary
+
+Dictionnary creation from CSV file
+
+```bash
+cd dict
+source venv/bin/activate
+python filter.py > ../src/dict.json
+```
