@@ -12,6 +12,8 @@ for word in f:
         continue
     if ('.' in word):
         continue
+    if ("'" in word):
+        continue
     if (len(word) == 8):
         wordList.append(word)
 
