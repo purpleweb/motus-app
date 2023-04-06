@@ -62,7 +62,7 @@ function App() {
       <div className="App">
         <div className="container">
           <h1 className="title"> MOTUS </h1>
-          <div className="box"> Bienvenue sur ce jeu inspiré du célèbre jeu Motus diffusé à la télévision.  </div>
+          <div className="box"> Bienvenue sur ce jeu inspiré du célèbre jeu télévisé Motus.  </div>
           <button className="button is-primary" onClick={handleStart} data-testid="start">Commencer à jouer</button>
         </div>
       </div>
