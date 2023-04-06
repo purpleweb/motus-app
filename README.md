@@ -22,3 +22,13 @@ cd dict
 source venv/bin/activate
 python filter.py > ../src/dict.json
 ```
+
+## Tech Stack
+
+- **Programming language:** Javascript
+- **Front-end library:** React
+- **Package manager:** npm
+- **Build tool:** Create React App
+- **CSS preprocessor:** Sass
+- **Unit testing:** Jest, Testing Library
+- **Deployment platform:** Vercel
