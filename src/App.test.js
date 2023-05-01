@@ -32,7 +32,22 @@ test('play an entire game', () => {
   expect(bravo).toBeInTheDocument();
 });
 
-test('click restart set a new game', () => {
+test('display a line with errors when player inputs incorrectly spelled word', () => {
+  utils.generateSolution = jest.fn(() => 'ABRICOTS');
+
+  render(<App />);
+  fireEvent.click(screen.getByTestId("start"));
+  const board = screen.getByTestId('board');
+  expect(board).toBeInTheDocument();
+  const input = screen.getByTestId('input');
+  fireEvent.change(input, {target: {value: "ABRIOTTS"}});
+  fireEvent.click(screen.getByTestId("valider"));
+  const firstLine = board.getElementsByClassName('columns')[0];
+  const lettersWithError = firstLine.getElementsByClassName('error');
+  expect(lettersWithError.length).toEqual(8);
+});
+
+test('click restart to begin a new game', () => {
   utils.generateSolution = jest.fn(() => 'CONCERTE');
 
   render(<App />);
