@@ -25,7 +25,5 @@ export function Timer({timer, setTimer, state}) {
         return () => clearInterval(intervalId);
     }, [state, setTimer])
 
-    return <div className="level-right">
-        <span className="timer" data-testid="timer">{timerDisplay}</span>
-    </div>
+    return <div className="timer" data-testid="timer">{timerDisplay}</div>
 }

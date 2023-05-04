@@ -74,8 +74,17 @@ h1.title {
     }
 }
 
+.controls {
+    display: flex;
+    gap: 5px;
+    align-items: stretch;
+}
+
 .timer {
-    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-self: baseline;
     color: white;
     text-shadow: 1px 1px 2px #443a2abd;
     font-size: 1.3rem;

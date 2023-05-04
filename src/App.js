@@ -89,15 +89,9 @@ function App() {
             </div>
           }
         </div>
-        <div className="level">
-          <div className="level-left">
-            <div className='level-item'>
-              <button className="button is-warning is-light" onClick={handleStart} data-testid="restart">recommencer</button>
-            </div>
-            <div className='level-item'>
-              <button className="button is-info is-light" onClick={handleShowSolution} disabled={state !== STATUS.PLAYING ? "disabled" : ""} data-testid="show-solution">solution</button>
-            </div>
-          </div>
+        <div className='controls'>
+          <button className="button is-warning is-light" onClick={handleStart} data-testid="restart">recommencer</button>
+          <button className="button is-info is-light" onClick={handleShowSolution} disabled={state !== STATUS.PLAYING ? "disabled" : ""} data-testid="show-solution">solution</button>
           <Timer timer={timer} setTimer={setTimer} state={state} />
         </div>
       </div>
